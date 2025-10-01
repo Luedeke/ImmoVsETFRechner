@@ -162,21 +162,21 @@ import { Inputs } from '../models/inputs.model';
       justify-content: space-between;
       align-items: center;
       padding: 8px 0;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--border-primary);
     }
     
     .tax-item.highlight {
-      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      background: var(--bg-warning);
       padding: 12px;
       border-radius: 8px;
-      border: 2px solid #ff9800;
-      border-bottom: 2px solid #ff9800;
+      border: 2px solid var(--warning-color);
+      border-bottom: 2px solid var(--warning-color);
       margin: 8px 0;
     }
     
     .label {
       font-weight: 600;
-      color: #555;
+      color: var(--text-secondary);
     }
     
     .value {
@@ -230,21 +230,21 @@ import { Inputs } from '../models/inputs.model';
     }
     
     .bracket-badge.low {
-      background: #e8f5e8;
-      color: #2e7d32;
-      border: 2px solid #4caf50;
+      background: var(--bg-tertiary);
+      color: var(--success-color);
+      border: 2px solid var(--success-color);
     }
     
     .bracket-badge.medium {
-      background: #fff3e0;
-      color: #ef6c00;
-      border: 2px solid #ff9800;
+      background: var(--bg-quaternary);
+      color: var(--warning-color);
+      border: 2px solid var(--warning-color);
     }
     
     .bracket-badge.high {
-      background: #ffebee;
-      color: #c62828;
-      border: 2px solid #f44336;
+      background: var(--bg-tertiary);
+      color: var(--error-color);
+      border: 2px solid var(--error-color);
     }
     
     .manual-tax-info {

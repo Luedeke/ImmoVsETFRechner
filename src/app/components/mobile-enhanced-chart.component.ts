@@ -82,10 +82,10 @@ import { Subject, takeUntil } from 'rxjs';
   styles: [`
     .mobile-chart-container {
       position: relative;
-      background: white;
+      background: var(--bg-secondary);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--card-shadow);
     }
     
     .chart-header {
@@ -125,8 +125,8 @@ import { Subject, takeUntil } from 'rxjs';
     }
     
     .control-btn:hover, .control-btn.active {
-      background: #1976d2;
-      color: white;
+      background: var(--accent-primary);
+      color: var(--text-on-accent);
       transform: scale(1.05);
     }
     
@@ -144,7 +144,7 @@ import { Subject, takeUntil } from 'rxjs';
       right: 0;
       bottom: 0;
       z-index: 9999;
-      background: white;
+      background: var(--bg-secondary);
       height: 100vh;
       padding: 20px;
       border-radius: 0;
@@ -171,7 +171,7 @@ import { Subject, takeUntil } from 'rxjs';
     
     .touch-hint {
       text-align: center;
-      color: white;
+      color: var(--text-on-accent);
       font-size: 14px;
     }
     

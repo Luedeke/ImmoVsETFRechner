@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { InputsFormComponent } from './components/inputs-form.component';
 import { CalcAnnualComponent } from './components/calc-annual.component';
 import { ProjectionComponent } from './components/projection.component';
@@ -8,16 +8,23 @@ import { ETFTaxBreakdownComponent } from './components/etf-tax-breakdown.compone
 import { AfAInfoComponent } from './components/afa-info.component';
 import { ComparisonChartComponent } from './components/comparison-chart.component';
 import { CashflowChartComponent } from './components/cashflow-chart.component';
+import { ThemeToggleComponent } from './components/theme-toggle.component';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [InputsFormComponent, CalcAnnualComponent, ProjectionComponent, ImmoVsEtfComponent, TaxInfoComponent, ETFTaxBreakdownComponent, AfAInfoComponent, ComparisonChartComponent, CashflowChartComponent],
+  imports: [InputsFormComponent, CalcAnnualComponent, ProjectionComponent, ImmoVsEtfComponent, TaxInfoComponent, ETFTaxBreakdownComponent, AfAInfoComponent, ComparisonChartComponent, CashflowChartComponent, ThemeToggleComponent],
   template: `
     <div class="container">
       <header class="header">
-        <h1>🏠 ImmoRechner</h1>
-        <p class="subtitle">Immobilieninvestment vs. ETF Vergleichsrechner</p>
+        <div class="header-content">
+          <div class="header-text">
+            <h1>🏠 ImmoRechner</h1>
+            <p class="subtitle">Immobilieninvestment vs. ETF Vergleichsrechner</p>
+          </div>
+          <app-theme-toggle></app-theme-toggle>
+        </div>
       </header>
       
       <app-inputs-form></app-inputs-form>
@@ -48,13 +55,25 @@ import { CashflowChartComponent } from './components/cashflow-chart.component';
   `,
   styles: [`
     .header {
-      text-align: center;
       margin-bottom: 32px;
-      padding: 24px 0;
-      background: linear-gradient(135deg, #1976d2, #1565c0);
+      padding: 24px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       border-radius: 12px;
       color: white;
       margin-top: 16px;
+      transition: background 0.3s ease;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+    }
+    
+    .header-text {
+      text-align: center;
+      flex: 1;
     }
     
     .header h1 {
@@ -80,6 +99,20 @@ import { CashflowChartComponent } from './components/cashflow-chart.component';
         margin-top: 8px;
         padding: 16px 12px;
         border-radius: 8px;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      
+      .header-text {
+        order: 1;
+      }
+      
+      app-theme-toggle {
+        order: 2;
       }
       
       .header h1 {
@@ -160,4 +193,10 @@ import { CashflowChartComponent } from './components/cashflow-chart.component';
     }
   `]
 })
-export class AppComponent {}
+export class AppComponent {
+  private themeService = inject(ThemeService);
+  
+  constructor() {
+    // Initialize theme service - the service will handle theme application
+  }
+}

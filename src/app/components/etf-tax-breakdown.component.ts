@@ -262,9 +262,9 @@ import { Inputs } from '../models/inputs.model';
     .info-section {
       margin-top: 24px;
       padding: 20px;
-      background: #fff3e0;
+      background: var(--bg-quaternary);
       border-radius: 12px;
-      border-left: 4px solid #ff9800;
+      border-left: 4px solid var(--warning-color);
     }
     
     .info-section h4 {

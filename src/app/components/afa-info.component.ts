@@ -228,17 +228,17 @@ import { Inputs } from '../models/inputs.model';
     
     .highlight-box {
       padding: 16px;
-      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      background: var(--bg-warning);
       border-radius: 8px;
-      border: 2px solid #ff9800;
+      border: 2px solid var(--warning-color);
     }
     
     .special-options {
       margin-bottom: 24px;
       padding: 20px;
-      background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+      background: var(--bg-tertiary);
       border-radius: 12px;
-      border: 2px solid #4caf50;
+      border: 2px solid var(--success-color);
     }
     
     .special-options h4 {
@@ -282,10 +282,10 @@ import { Inputs } from '../models/inputs.model';
     }
     
     .comparison-table {
-      background: #fff;
+      background: var(--bg-secondary);
       border-radius: 8px;
       overflow: hidden;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-secondary);
     }
     
     .comparison-row {
@@ -293,7 +293,7 @@ import { Inputs } from '../models/inputs.model';
       grid-template-columns: 1fr 80px 80px 2fr;
       gap: 16px;
       padding: 12px 16px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border-primary);
     }
     
     .comparison-row.header {
@@ -310,9 +310,9 @@ import { Inputs } from '../models/inputs.model';
     
     .tax-benefit-info {
       padding: 20px;
-      background: #fff3e0;
+      background: var(--bg-quaternary);
       border-radius: 12px;
-      border-left: 4px solid #ff9800;
+      border-left: 4px solid var(--warning-color);
     }
     
     .tax-benefit-info h4 {

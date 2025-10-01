@@ -103,17 +103,17 @@ import { Subject, takeUntil } from 'rxjs';
     .investment-block {
       padding: 20px;
       border-radius: 12px;
-      border: 2px solid #e0e0e0;
+      border: 2px solid var(--border-primary);
     }
     
     .immo-block {
-      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-      border-color: #ff9800;
+      background: var(--bg-warning);
+      border-color: var(--warning-color);
     }
     
     .etf-block {
-      background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-      border-color: #4caf50;
+      background: var(--bg-tertiary);
+      border-color: var(--success-color);
     }
     
     .investment-block h4 {
@@ -161,17 +161,17 @@ import { Subject, takeUntil } from 'rxjs';
       padding: 24px;
       border-radius: 12px;
       text-align: center;
-      border: 3px solid #ddd;
+      border: 3px solid var(--border-secondary);
     }
     
     .immo-wins {
-      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-      border-color: #ff9800;
+      background: var(--bg-warning);
+      border-color: var(--warning-color);
     }
     
     .etf-wins {
-      background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-      border-color: #4caf50;
+      background: var(--bg-tertiary);
+      border-color: var(--success-color);
     }
     
     .result-header h4 {

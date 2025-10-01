@@ -1,13 +1,74 @@
 /* Global styles for ImmoRechner */
+
+/* CSS Variables for theming */
+:root {
+  /* Light theme colors */
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8f9fa;
+  --bg-quaternary: #fff3e0;
+  --bg-warning: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  --text-primary: #333333;
+  --text-secondary: #555555;
+  --text-tertiary: #666666;
+  --text-muted: #999999;
+  --text-on-accent: #ffffff;
+  --border-primary: #e0e0e0;
+  --border-secondary: #ddd;
+  --border-focus: #1976d2;
+  --accent-primary: #1976d2;
+  --accent-secondary: #1565c0;
+  --accent-tertiary: #0d47a1;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --shadow-dark: rgba(25, 118, 210, 0.3);
+  --highlight-bg: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  --table-hover: #f8f9fa;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --warning-color: #ff9800;
+}
+
+.dark-theme {
+  /* Dark theme colors */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2d2d2d;
+  --bg-quaternary: #2d2d2d;
+  --bg-warning: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+  --text-primary: #e0e0e0;
+  --text-secondary: #b3b3b3;
+  --text-tertiary: #999999;
+  --text-muted: #666666;
+  --text-on-accent: #ffffff;
+  --border-primary: #404040;
+  --border-secondary: #555;
+  --border-focus: #64b5f6;
+  --accent-primary: #64b5f6;
+  --accent-secondary: #42a5f5;
+  --accent-tertiary: #2196f3;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.4);
+  --shadow-dark: rgba(100, 181, 246, 0.3);
+  --highlight-bg: linear-gradient(135deg, #1a237e, #3949ab);
+  --table-hover: #2d2d2d;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --success-color: #66bb6a;
+  --error-color: #ef5350;
+  --warning-color: #ffa726;
+}
+
 body { 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
   margin: 0; 
   padding: 16px;
-  background-color: #f5f5f5; 
-  color: #333;
+  background-color: var(--bg-primary); 
+  color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container { 
@@ -18,18 +79,20 @@ body {
 
 .card { 
   padding: 24px; 
-  border: 1px solid #e0e0e0; 
+  border: 1px solid var(--border-primary); 
   border-radius: 12px; 
   margin-bottom: 24px; 
-  background: #fff; 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: var(--bg-secondary); 
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card h3 {
   margin-top: 0;
   margin-bottom: 20px;
-  color: #1976d2;
+  color: var(--accent-primary);
   font-size: 1.4rem;
+  transition: color 0.3s ease;
 }
 
 .row { 
@@ -48,7 +111,8 @@ label {
   align-items: center;
   font-weight: 600; 
   margin-bottom: 6px; 
-  color: #555;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 input[type="number"], input[type="text"], select { 
@@ -56,23 +120,25 @@ input[type="number"], input[type="text"], select {
   padding: 10px; 
   box-sizing: border-box; 
   border-radius: 6px; 
-  border: 2px solid #ddd; 
-  transition: border-color 0.3s ease;
+  border: 2px solid var(--border-secondary); 
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   font-size: 14px;
 }
 
 input[type="number"]:focus, input[type="text"]:focus, select:focus {
   outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--shadow-light);
 }
 
 button { 
   padding: 12px 24px; 
   border-radius: 8px; 
   border: none; 
-  background: linear-gradient(135deg, #1976d2, #1565c0); 
-  color: #fff; 
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); 
+  color: var(--text-on-accent); 
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -81,9 +147,9 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+  box-shadow: 0 4px 12px var(--shadow-dark);
 }
 
 button.secondary { 
@@ -96,7 +162,8 @@ button.secondary:hover {
 
 .small { 
   font-size: 0.9rem; 
-  color: #666; 
+  color: var(--text-tertiary); 
+  transition: color 0.3s ease;
 }
 
 /* Table styles */
@@ -107,21 +174,25 @@ table {
 }
 
 table th {
-  background: #f8f9fa;
+  background: var(--bg-tertiary);
   padding: 12px 8px;
   text-align: left;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid var(--border-primary);
   font-weight: 600;
-  color: #495057;
+  color: var(--text-secondary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 table td {
   padding: 10px 8px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-primary);
+  color: var(--text-primary);
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 table tr:hover {
-  background: #f8f9fa;
+  background: var(--table-hover);
+  transition: background-color 0.2s ease;
 }
 
 /* Enhanced Responsive Design */
@@ -278,9 +349,11 @@ table tr:hover {
 
 /* Result highlighting */
 .highlight {
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-  border-left: 4px solid #1976d2;
+  background: var(--highlight-bg);
+  border-left: 4px solid var(--accent-primary);
   padding: 16px;
   border-radius: 8px;
   margin: 16px 0;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
 }

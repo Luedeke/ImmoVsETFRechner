@@ -317,9 +317,9 @@ import { CommonModule } from '@angular/common';
       align-items: center;
       gap: 16px;
       padding: 20px;
-      background: white;
+      background: var(--bg-secondary);
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--card-shadow);
     }
 
     .skeleton-summary-icon {

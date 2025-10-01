@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalculatorService, ProjectionRow } from '../services/calculator.service';
-import { Subject, takeUntil } from 'rxjs';
+import { ThemeService } from '../services/theme.service';
+import { Subject, takeUntil, combineLatest } from 'rxjs';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
 
@@ -95,9 +96,9 @@ import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
     }
     
     .tab-button.active {
-      background: #1976d2;
-      color: white;
-      box-shadow: 0 2px 4px rgba(25, 118, 210, 0.3);
+      background: var(--accent-primary);
+      color: var(--text-on-accent);
+      box-shadow: 0 2px 4px var(--shadow-dark);
     }
     
     .chart-container {
@@ -126,9 +127,9 @@ import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
     .stat-item {
       text-align: center;
       padding: 16px;
-      background: white;
+      background: var(--bg-secondary);
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--card-shadow);
     }
     
     .stat-item.positive {
