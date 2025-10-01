@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>ImmoRechner - Immobilie vs. ETF Vergleich</title>
+    <base href="/">
+    
+    <!-- Enhanced Mobile Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, viewport-fit=cover">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1976d2">
+    <meta name="background-color" content="#f5f5f5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ImmoRechner">
+    <meta name="msapplication-TileColor" content="#1976d2">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Vergleichen Sie Immobilieninvestments mit ETF-Anlagen. Vollständige Steuerberechnung, AfA-Analyse und interaktive Charts für fundierte Investitionsentscheidungen.">
+    <meta name="keywords" content="Immobilie, ETF, Investment, Vergleich, Steuer, AfA, Rendite, Cashflow">
+    <meta name="author" content="ImmoRechner">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ImmoRechner - Immobilie vs. ETF Vergleich">
+    <meta property="og:description" content="Professioneller Vergleichsrechner für Immobilieninvestments vs. ETF-Anlagen mit Steuerberechnung und Charts.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://immorechner.app">
+    <meta property="og:image" content="assets/screenshots/desktop.png">
+    <meta property="og:locale" content="de_DE">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ImmoRechner - Immobilie vs. ETF Vergleich">
+    <meta name="twitter:description" content="Vollständige Analyse von Immobilieninvestments vs. ETF-Anlagen">
+    <meta name="twitter:image" content="assets/screenshots/desktop.png">
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/icon-16x16.png">
+    <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#1976d2">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Critical CSS Inline -->
+    <style>
+      /* Critical loading styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      app-root {
+        display: block;
+        min-height: 100vh;
+      }
+      
+      /* Loading spinner */
+      .loading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #e3f2fd;
+        border-top: 4px solid #1976d2;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        color: #666;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+      
+      /* Hide loading when app is ready */
+      app-root:not(:empty) + .loading-container {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <app-root>
+      <!-- Loading Screen -->
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">🏠 ImmoRechner wird geladen...</div>
+      </div>
+    </app-root>
+    
+    <!-- PWA Install Script -->
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+      
+      // PWA Install Prompt
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Show install button after a delay
+        setTimeout(() => {
+          if (deferredPrompt && !window.matchMedia('(display-mode: standalone)').matches) {
+            showInstallPrompt();
+          }
+        }, 10000); // Show after 10 seconds
+      });
+      
+      function showInstallPrompt() {
+        const installBanner = document.createElement('div');
+        installBanner.innerHTML = `
+          <div style="
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #1976d2, #1565c0);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Segoe UI', sans-serif;
+          ">
+            <div style="flex: 1;">
+              <strong>📱 ImmoRechner installieren</strong><br>
+              <small>Für schnelleren Zugriff als App hinzufügen</small>
+            </div>
+            <button onclick="installPWA()" style="
+              background: rgba(255,255,255,0.2);
+              color: white;
+              border: none;
+              padding: 8px 16px;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 14px;
+              font-weight: 600;
+            ">Installieren</button>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+              background: none;
+              color: white;
+              border: none;
+              padding: 8px;
+              border-radius: 50%;
+              cursor: pointer;
+              font-size: 18px;
+              width: 32px;
+              height: 32px;
+            ">×</button>
+          </div>
+        `;
+        document.body.appendChild(installBanner);
+      }
+      
+      function installPWA() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the install prompt');
+            }
+            deferredPrompt = null;
+          });
+        }
+        // Remove banner
+        const banner = document.querySelector('[onclick="installPWA()"]').closest('div').parentElement;
+        if (banner) banner.remove();
+      }
+      
+      // Track PWA usage
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('Running as PWA');
+        // Add PWA-specific analytics or features
+      }
+    </script>
+  </body>
+</html>
